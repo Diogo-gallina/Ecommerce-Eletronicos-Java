@@ -103,11 +103,12 @@ public class Produto {
 	}
 
 
-
-	public String dadosProduto() {
-		return "id: " + this.getId() + "\nnome: " + this.getNome() +"\nMarca: "+ this.getMarca() + "\nCategoria: "+ this.getCategoria() + "\nPreco Venda: "+ this.getPrecoVenda() +"\nPreco Custo: "+ this.getPrecoCusto() + "\nQuantidade Estoque: " + this.getQuantidadeEstoque();
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", nome=" + nome + ", marca=" + marca + ", categoria=" + categoria
+				+ ", precoVenda=" + precoVenda + ", precoCusto=" + precoCusto + ", quantidadeEstoque="
+				+ quantidadeEstoque + "]";
 	}
-
 	
 	
 }
