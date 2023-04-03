@@ -9,18 +9,20 @@ public class Produto {
 	private String categoria;
 	private double precoVenda;
 	private double precoCusto;
+	private int quantidadeEstoque;
 	
-	public Produto(String nome, String marca, String categoria, double precoVenda, double precoCusto) {
+	public Produto(String nome, String marca, String categoria, double precoVenda, double precoCusto, int quantidadeEstoque) {
 		this.id = count;
 		this.nome = nome;
 		this.marca = marca;
 		this.categoria = categoria;
 		this.precoVenda = precoVenda;
 		this.precoCusto = precoCusto;
+		this.quantidadeEstoque = quantidadeEstoque;
 		Produto.count += 1;
 	}
 	
-	
+
 	public int getId() {
 		return id;
 	}
@@ -34,11 +36,9 @@ public class Produto {
 	}
 
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 
 	public String getMarca() {
@@ -46,11 +46,9 @@ public class Produto {
 	}
 
 
-
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-
 
 
 	public String getCategoria() {
@@ -58,23 +56,18 @@ public class Produto {
 	}
 
 
-
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-
 
 
 	public double getPrecoVenda() {
 		return precoVenda;
 	}
 
-
-
 	public void setPrecoVenda(double precoVenda) {
 		this.precoVenda = precoVenda;
 	}
-
 
 
 	public double getPrecoCusto() {
@@ -82,15 +75,23 @@ public class Produto {
 	}
 
 
-
 	public void setPrecoCusto(double precoCusto) {
 		this.precoCusto = precoCusto;
+	}
+	
+	public int getQuantidadeEstoque() {
+		return quantidadeEstoque;
+	}
+
+	public void setQuantidadeEstoque(int quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
 	@Override
 	public String toString() {
-		return "Produto [id=" + this.getId() + ", nome=" + this.getNome() + ", marca=" + this.getMarca() + ", categoria=" + this.getCategoria()
-				+ ", precoVenda=" + this.getPrecoVenda() + ", precoCusto=" + this.getPrecoCusto() + "]\n";
+		return "Produto\n[id=" + this.getId() + ", nome=" + this.getNome() + ", marca=" + this.getMarca() + ", categoria=" + this.getCategoria()
+				+ ", precoVenda=" + this.getPrecoVenda() + ", precoCusto=" + this.getPrecoCusto() + ", QuantidadeEstoque= " 
+				+ this.getQuantidadeEstoque() + "]\n";
 	}
 	
 	

@@ -215,7 +215,7 @@ public class Main {
 		System.out.println("Digite a quantidade em estoque:");
 		int quantidadeEstoque = scan.nextInt();
 		
-		Produto produto = new Produto(nome, marca, categoria, precoVenda, preocCusto);
+		Produto produto = new Produto(nome, marca, categoria, precoVenda, preocCusto, quantidadeEstoque);
 		produtos.add(produto);
 		
 		System.out.println("\nProduto cadastrado!\n");
@@ -232,16 +232,33 @@ public class Main {
 		System.out.println("\ninforme o código do produto que deseja excluir: ");
 		
 		int id = Integer.parseInt(scan.next());
+		int x = 0;
 		
 		for (Produto p : produtos) {
 			if (p.getId() == id) {
-				produtos.remove(p.getId());
-			}else {
-				System.out.println("\nCódigo informado não condiz com os produtos");
-				menuFuncionario();
+				produtos.remove(x);
+				break;
 			}
+			x++;
 		}
 		
+		for(Produto p : produtos) {
+			System.out.println(p + "\n");
+		}
+		
+		System.out.println("\nDeseja Remover outro produto(S/N)?");
+		String opcao = scan.next().toUpperCase();
+		
+		while(!opcao.equals("S") && !opcao.equals("N")) {
+			System.out.println("Digite apenas S ou N.");
+			opcao = scan.next().toUpperCase();
+		}
+		
+		if(opcao.equals("S")) {
+			removerProduto();
+		}
+	
+		menuFuncionario();
 	}
 	
 	private static void listarProdutos() {
