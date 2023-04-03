@@ -4,14 +4,12 @@ public class Cliente {
 	private int id;;
 	private String nome;
 	private String email;
-	private String celular;
 	private Endereco endereco;
 	
-	public Cliente(int id, String nome, String email, String celular, Endereco endereco) {
+	public Cliente(int id, String nome, String email, Endereco endereco) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.celular = celular;
 		this.endereco = endereco;
 	}
 
@@ -39,14 +37,6 @@ public class Cliente {
 		this.email = email;
 	}
 
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
-
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -57,8 +47,8 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", celular=" + celular + ", endereco="
-				+ endereco + "]";
+		return "Cliente \n[id: " + id + ", nome: " + nome + ", email: " + email + "\n"
+				+ endereco + "\n";
 	}
 	
 
