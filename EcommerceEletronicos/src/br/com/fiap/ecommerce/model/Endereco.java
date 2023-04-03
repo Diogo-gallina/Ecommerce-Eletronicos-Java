@@ -57,8 +57,8 @@ public class Endereco {
 
 	@Override
 	public String toString() {
-		return "Endereco [id=" + id + ", cep=" + cep + ", logradouro=" + logradouro + ", numero=" + numero
-				+ ", complemento=" + complemento + "]";
+		return "Endereco\n[id: " + id + ", cep: " + cep + ", logradouro: " + logradouro + ", numero: " + numero
+				+ ", complemento: " + complemento + "]";
 	}
 	
 	

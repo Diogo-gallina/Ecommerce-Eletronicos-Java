@@ -1,61 +1,65 @@
 package br.com.fiap.ecommerce.model;
 
+import java.util.ArrayList;
+
 public class Estoque {
 	private int id;
-	private String produto;
+	private ArrayList<Produto> produtos;
 	private int quantidade;
 	private String fornecedor;
-	private double precoCusto;
 	
-	public Estoque(int id, String produto, int quantidade, String fornecedor, double precoCusto) {
+	
+
+	public Estoque(int id, ArrayList<Produto> produtos, int quantidade, String fornecedor) {
 		this.id = id;
-		this.produto = produto;
+		this.produtos = produtos;
 		this.quantidade = quantidade;
 		this.fornecedor = fornecedor;
-		this.precoCusto = precoCusto;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getProduto() {
-		return produto;
+
+	public ArrayList<Produto> getProdutos() {
+		return produtos;
 	}
-	public void setProduto(String produto) {
-		this.produto = produto;
+
+	public void setProdutos(ArrayList<Produto> produtos) {
+		this.produtos = produtos;
 	}
+
 	public int getQuantidade() {
 		return quantidade;
 	}
+
+
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
+
 	public String getFornecedor() {
 		return fornecedor;
 	}
+
 	public void setFornecedor(String fornecedor) {
 		this.fornecedor = fornecedor;
 	}
-	public double getPrecoCusto() {
-		return precoCusto;
-	}
-	public void setPrecoCusto(double precoCusto) {
-		this.precoCusto = precoCusto;
-	}
-	
-	public void adicionarProduto() {
-		
-	}
-	
-	public void removerProduto() {
-		
-	}
-	
-	public void atualizarQuantidade() {
-		
+
+
+
+
+
+	public void atualizarQuantidade(int qtd) {
+		if (qtd > 0) {
+			this.quantidade += qtd;
+		}else {
+			this.quantidade -= qtd;
+		}
 	}
 	
 }
