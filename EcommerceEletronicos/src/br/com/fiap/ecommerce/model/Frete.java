@@ -6,11 +6,21 @@ public class Frete {
 	private String cepDestino;
 	private double valorFrete;
 	
-	public Frete(int id, String cepEnvio, String cepDestino, double valorFrete) {
-		this.id = id;
+	public Frete() {
+
+	}
+	
+	public Frete(String cepEnvio, String cepDestino) {
 		this.cepEnvio = cepEnvio;
 		this.cepDestino = cepDestino;
-		this.valorFrete = valorFrete;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getCepEnvio() {
@@ -32,13 +42,9 @@ public class Frete {
 	public double getValorFrete() {
 		return valorFrete;
 	}
-
-	public void setValorFrete(double valorFrete) {
-		this.valorFrete = valorFrete;
-	}
 	
-	public void calcularFrete() {
-		
+	public void calcularFrete(double distancia) {
+		valorFrete = distancia * 0.88;
 	}
 	
 	

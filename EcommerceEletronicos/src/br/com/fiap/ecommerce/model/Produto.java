@@ -11,6 +11,7 @@ public class Produto {
 	private double precoCusto;
 	private int quantidadeEstoque;
 	
+	
 	public Produto(String nome, String marca, String categoria, double precoVenda, double precoCusto, int quantidadeEstoque) {
 		this.id = count;
 		this.nome = nome;
@@ -82,9 +83,23 @@ public class Produto {
 	public int getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
-
-	public void setQuantidadeEstoque(int quantidadeEstoque) {
-		this.quantidadeEstoque = quantidadeEstoque;
+	
+	public void calcularLucro() {
+		double lucro = precoVenda - precoCusto;
+	}
+	
+	public void alterarQuantidade(int quantidade, int acao) {
+		switch(acao) {
+			case 1:
+				this.quantidadeEstoque += quantidade;
+			break;
+			case 0:
+				this.quantidadeEstoque += quantidade;
+			break;
+			default:
+				System.out.println("escolha 1 ou 0.");
+			break;
+		}
 	}
 
 	@Override

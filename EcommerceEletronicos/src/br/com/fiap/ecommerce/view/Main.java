@@ -9,14 +9,12 @@ public class Main {
 	private static ArrayList<Produto> produtos;
 	private static ArrayList<Cliente> clientes;
 	private static ArrayList<Endereco> enderecos;
-	private static ArrayList<Estoque> estoques;
 	private static Map<Produto, Integer> carrinho;
 	
 	public static void main(String[] args) {
 		produtos = new ArrayList();
 		clientes = new ArrayList();
 		enderecos = new ArrayList();
-		estoques = new ArrayList();
 		carrinho = new HashMap<>();
 		menuInicial();
 		
@@ -51,22 +49,22 @@ public class Main {
 	
 	private static void cadastroCliente() {
 		System.out.println("Digite o seu Nome: ");
-		String nome = scan.next();
+		String nome = scan.nextLine() + scan.next();
 		
 		System.out.println("Digite o seu email: ");
-		String email = scan.next();
+		String email = scan.nextLine() + scan.next();
 		
 		System.out.println("Informe o seu cep: ");
-		String cep = scan.next();
+		String cep = scan.nextLine() + scan.next();
 		
 		System.out.println("Informe o seu logradouro: ");
-		String logradouro = scan.next();
+		String logradouro = scan.nextLine() + scan.next();
 		
 		System.out.println("Numero: ");
 		int numero = scan.nextInt();
 		
 		System.out.println("Complemento: ");
-		String complemento = scan.next();
+		String complemento = scan.nextLine() + scan.next();
 		
 		Endereco endereco = new Endereco(1, cep, logradouro, numero, complemento);
 		Cliente cliente = new Cliente(1, nome, email, endereco);
@@ -106,7 +104,9 @@ public class Main {
 		System.out.println("-----------------------------------------------------------"); 
 		System.out.println("            Opcao 3 - Listar produtos");
 		System.out.println("-----------------------------------------------------------");
-		System.out.println("            Opcao 4 - Voltar ao menu inicial");
+		System.out.println("            Opcao 4 - Atualizar quantidade de produtos");
+		System.out.println("-----------------------------------------------------------");
+		System.out.println("            Opcao 5 - Voltar ao menu inicial");
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("            Opcao 0 - Sair");
 		System.out.println("-----------------------------------------------------------\n");
@@ -124,6 +124,9 @@ public class Main {
 				listarProdutos();
 				break;
 			case 4: 
+				atualizarQuantidade();
+				break;
+			case 5: 
 				menuInicial();
 				break;
 			case 0:
@@ -160,7 +163,7 @@ public class Main {
 				listarProdutos();
 				break;
 			case 3:
-				//calcularFrete();
+				calcularFrete();
 				break;
 			case 4:
 				comprarProduto();
@@ -198,13 +201,13 @@ public class Main {
 	
 	private static void cadastrarProduto() {
 		System.out.println("Digite o nome do produto:");
-		String nome = scan.next();
+		String nome = scan.next() + scan.nextLine();
 		
 		System.out.println("Digite a marca:");
-		String marca = scan.next();
+		String marca = scan.next() + scan.nextLine();
 		
 		System.out.println("Digite a categoria:");
-		String categoria = scan.next();
+		String categoria = scan.next() + scan.nextLine();
 		
 		System.out.println("Digite o preco de venda:");
 		double precoVenda = scan.nextDouble();
@@ -261,6 +264,18 @@ public class Main {
 		menuFuncionario();
 	}
 	
+	private static void atualizarQuantidade() {
+		
+	}
+	
+	private static void calcularFrete() {
+		Frete frete = new Frete();
+		System.out.println("\nInsira a distancia da sua casa ao correio mais proximo: ");
+		frete.calcularFrete(scan.nextDouble());
+		
+		System.out.println("\nValor do frete: R$" + frete.getValorFrete());		
+	}
+	
 	private static void listarProdutos() {
 		if (produtos.size() > 0) {
 			System.out.println("Lista de produtos");
@@ -292,7 +307,7 @@ public class Main {
 				if (p.getId() == id) {
 					int qtd = 0;
 					try {
-						//Checa se o produto já esta no carrinho, caso ttenha incrementa a quantidade
+						//Checa se o produto já esta no carrinho, caso tenha incrementa a quantidade
 						qtd = carrinho.get(p);
 						carrinho.put(p, qtd +1);
 					}catch(NullPointerException e) {
@@ -304,16 +319,22 @@ public class Main {
 					temP = true;
 					
 					if (temP) {
-						System.out.println("Deseja adicionar outro produto ao carrinho?");
-						System.out.println("Digite 1 para sim e 0 para finalizar compra.");
-						int opcao = Integer.parseInt(scan.next());
+						System.out.println("Deseja adicionar outro produto ao carrinho(S/N)? ");
 						
-						if (opcao == 1 ) {
+						String opcao = scan.next().toUpperCase();
+						
+						while(!opcao.equals("S") && !opcao.equals("N")) {
+							System.out.println("Digite apenas S ou N.");
+							opcao = scan.next().toUpperCase();
+						}
+						
+						if(opcao.equals("S")) {
 							comprarProduto();
 						}
-						else {
-							finalizarCompra();
-						}
+						
+						finalizarCompra();
+						
+						
 					}
 				}else {
 					System.out.println("\nProduto não encontrado.\n");
@@ -351,7 +372,7 @@ public class Main {
 			valorTotal += p.getPrecoVenda() * qtd;
 			System.out.println(p);
 			System.out.println("Quantidade: " + qtd);
-			System.out.println("=======================");
+			System.out.println("-----------------------------------");
 			
 		}
 		
