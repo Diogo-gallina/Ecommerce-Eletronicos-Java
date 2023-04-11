@@ -10,6 +10,7 @@ public class Main {
 	private static ArrayList<Cliente> clientes;
 	private static ArrayList<Endereco> enderecos;
 	private static Map<Produto, Integer> carrinho;
+	private static Frete frete = new Frete();
 	
 	public static void main(String[] args) {
 		produtos = new ArrayList();
@@ -49,22 +50,22 @@ public class Main {
 	
 	private static void cadastroCliente() {
 		System.out.println("Digite o seu Nome: ");
-		String nome = scan.nextLine() + scan.next();
+		String nome = scan.next() + scan.nextLine();
 		
 		System.out.println("Digite o seu email: ");
-		String email = scan.nextLine() + scan.next();
+		String email = scan.next() + scan.nextLine();
 		
 		System.out.println("Informe o seu cep: ");
-		String cep = scan.nextLine() + scan.next();
+		String cep = scan.next() + scan.nextLine();
 		
 		System.out.println("Informe o seu logradouro: ");
-		String logradouro = scan.nextLine() + scan.next();
+		String logradouro = scan.next() + scan.nextLine();
 		
 		System.out.println("Numero: ");
 		int numero = scan.nextInt();
 		
 		System.out.println("Complemento: ");
-		String complemento = scan.nextLine() + scan.next();
+		String complemento = scan.next() + scan.nextLine();
 		
 		Endereco endereco = new Endereco(1, cep, logradouro, numero, complemento);
 		Cliente cliente = new Cliente(1, nome, email, endereco);
@@ -137,19 +138,19 @@ public class Main {
 	private static void menu() {
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("----------------------GALLINA STORE------------------------");
-		System.out.println("-----------------------------------------------------------\n\n");
+		System.out.println("-----------------------------------------------------------\n");
 		System.out.println("-----------------------------------------------------------");
-		System.out.println("            Opcao 1 - Ver meus dados");
+		System.out.println("               Opcao 1 - Ver meus dados");
 		System.out.println("-----------------------------------------------------------");
-		System.out.println("            Opcao 2 - Listar produtos");
+		System.out.println("               Opcao 2 - Calcular Frete");
 		System.out.println("-----------------------------------------------------------");
-		System.out.println("            Opcao 3 - Calcular Frete");
+		System.out.println("               Opcao 3 - Comprar");
 		System.out.println("-----------------------------------------------------------");
-		System.out.println("            Opcao 4 - Comprar");
+		System.out.println("               Opcao 4 - Ver Carrinho");
 		System.out.println("-----------------------------------------------------------");
-		System.out.println("            Opcao 5 - Ver Carrinho");
+		System.out.println("               Opcao 5 - Menu Inicial");
 		System.out.println("-----------------------------------------------------------");
-		System.out.println("            Opcao 0 - Sair");
+		System.out.println("               Opcao 0 - Sair");
 		System.out.println("-----------------------------------------------------------");
 		
 		System.out.println("\n\nDigite uma operação que deseja realizar: ");
@@ -160,24 +161,26 @@ public class Main {
 				dadosCliente();
 			break;
 			case 2:
-				listarProdutos();
-				break;
-			case 3:
 				calcularFrete();
-				break;
-			case 4:
+			break;
+			case 3:
 				comprarProduto();
-				break;
-			case 5:
+			break;
+			case 4:
 				verCarrinho();
-				break;
+			break;
+			case 5:
+				menuInicial();
+			break;
 			case 0:
-				System.out.println("Volte sempre!");
+				System.out.println("\nVolte sempre!");
 				System.exit(opcao);
-				break;
+			break;
 			default:
-				System.out.println("Opção inválida.");
+				System.out.println("Opção inválida.\n");
 				menu();
+			break;
+				
 		}
 	}
 	
@@ -269,11 +272,11 @@ public class Main {
 	}
 	
 	private static void calcularFrete() {
-		Frete frete = new Frete();
-		System.out.println("\nInsira a distancia da sua casa ao correio mais proximo: ");
+		System.out.println("\nInsira a distancia(em Km) da sua casa ate o correio mais proximo: ");
 		frete.calcularFrete(scan.nextDouble());
 		
-		System.out.println("\nValor do frete: R$" + frete.getValorFrete());		
+		System.out.println("\nValor do frete: R$" + frete.getValorFrete() + "\n");	
+		menu();
 	}
 	
 	private static void listarProdutos() {
@@ -288,7 +291,7 @@ public class Main {
 			System.out.println("\nNenhum produto foi adicionado a lista.");
 		}
 		
-		menu();
+		menuFuncionario();
 	}
 	
 	private static void comprarProduto() {
@@ -343,7 +346,7 @@ public class Main {
 			}
 			
 		} else {
-			System.out.println("\nNao exixtem produtos cadastrados\n");
+			System.out.println("\nNao existem produtos cadastrados\n");
 			menu();
 		}
 	}
@@ -369,7 +372,7 @@ public class Main {
 		
 		for (Produto p : carrinho.keySet()) {
 			int qtd = carrinho.get(p);
-			valorTotal += p.getPrecoVenda() * qtd;
+			valorTotal += p.getPrecoVenda() * qtd ;
 			System.out.println(p);
 			System.out.println("Quantidade: " + qtd);
 			System.out.println("-----------------------------------");
